@@ -286,6 +286,8 @@
         window.hulkappsWishlist.baseURL = '/apps/advanced-wishlist/api';
         window.hulkappsWishlist.hasAppBlockSupport = '1';
         </script>
+
+  {% render 'shogun-head' %}
 </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
