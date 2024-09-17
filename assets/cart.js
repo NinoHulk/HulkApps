@@ -144,7 +144,27 @@ class CartItems extends HTMLElement {
             section.selector
           );
         });
-        const updatedValue = parsedState.items[line - 1] ? parsedState.items[line - 1].quantity : undefined;
+        
+BOLD.common.themeCartCallback = function(){
+let sections = (this.getSectionsToRender().map((section) => section.section)).join();
+fetch(`/?sections=${sections}`, {
+method: 'GET',
+})
+.then((response) => {
+return response.text();
+})
+.then((state) => {
+const pState = JSON.parse(state);
+this.getSectionsToRender().forEach((section => {
+const elementToReplace =
+document.getElementById(section.id).querySelector(section.selector) || document.getElementById(section.id);
+elementToReplace.innerHTML =
+this.getSectionInnerHTML(pState[section.section], section.selector);
+}));
+})
+}.bind(this);
+BOLD.common.eventEmitter.emit("BOLD_COMMON_cart_loaded", parsedState);
+const updatedValue = parsedState.items[line - 1] ? parsedState.items[line - 1].quantity : undefined;
         let message = '';
         if (items.length === parsedState.items.length && updatedValue !== parseInt(quantityElement.value)) {
           if (typeof updatedValue === 'undefined') {
@@ -176,7 +196,8 @@ class CartItems extends HTMLElement {
       })
       .finally(() => {
         this.disableLoading(line);
-      });
+      (typeof window.BOLD !== 'undefined' && typeof window.BOLD.common !== 'undefined' && typeof window.BOLD.common.eventEmitter !== 'undefined' && typeof window.BOLD.common.eventEmitter.emit !== 'undefined' && (BOLD.common.eventEmitter.emit('BOLD_COMMON_cart_loaded')));
+});
   }
 
   updateLiveRegions(line, message) {
@@ -192,7 +213,8 @@ class CartItems extends HTMLElement {
 
     setTimeout(() => {
       cartStatus.setAttribute('aria-hidden', true);
-    }, 1000);
+    (typeof window.BOLD !== 'undefined' && typeof window.BOLD.common !== 'undefined' && typeof window.BOLD.common.eventEmitter !== 'undefined' && typeof window.BOLD.common.eventEmitter.emit !== 'undefined' && (BOLD.common.eventEmitter.emit('BOLD_COMMON_cart_loaded')));
+}, 1000);
   }
 
   getSectionInnerHTML(html, selector) {

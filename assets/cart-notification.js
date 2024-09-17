@@ -45,7 +45,8 @@ class CartNotification extends HTMLElement {
 
     if (this.header) this.header.reveal();
     this.open();
-  }
+  (typeof window.BOLD !== 'undefined' && typeof window.BOLD.common !== 'undefined' && typeof window.BOLD.common.eventEmitter !== 'undefined' && typeof window.BOLD.common.eventEmitter.emit !== 'undefined' && (BOLD.common.eventEmitter.emit('BOLD_COMMON_cart_loaded')));
+}
 
   getSectionsToRender() {
     return [

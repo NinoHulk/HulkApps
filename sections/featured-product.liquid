@@ -192,7 +192,7 @@
                 {%- endif -%}
                 {%- if product != blank -%}
                   <div {{ block.shopify_attributes }}>
-                    {%- form 'product', product -%}
+                    {%- form 'product', product , class: 'no_bold_options' -%}
                       <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
                       {{ form | payment_terms }}
                     {%- endform -%}

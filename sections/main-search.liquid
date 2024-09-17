@@ -260,7 +260,8 @@
                 role="list"
               >
                 {%- for item in search.results -%}
-                  {% assign lazy_load = false %}
+                  {%- if item.metafields.inventory.ShappifyHidden == 'true' -%}{%- continue -%}{%- endif -%}
+{% assign lazy_load = false %}
                   {%- if forloop.index > 2 -%}
                     {%- assign lazy_load = true -%}
                   {%- endif -%}
