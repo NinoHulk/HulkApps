@@ -382,10 +382,10 @@ bold-options.css version 6
 
 /* custom css */
 .bold_option_value_swatch {
-width:108px;
-height:108px;
+width:100px;
+height:100px;
 }
 .bold_option_value_swatch input {
-width:108px;
-height:108px;
-}
+width:100px;
+height:100px;
+}                        
