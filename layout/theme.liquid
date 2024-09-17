@@ -37,7 +37,11 @@
 
     {{ content_for_header }}
 
-    {%- liquid
+    {% if template == 'product' and product.metafields.inventory.ShappifyHidden or product.type contains '_HIDDEN_' %}<meta name='robots' content='noindex'>{% endif %}
+{%- render 'bold-options-hybrid' -%}
+{%- render 'bold-common' -%}
+{%- render 'sc-includes' -%}
+{%- liquid
       assign body_font_bold = settings.type_body_font | font_modify: 'weight', 'bold'
       assign body_font_italic = settings.type_body_font | font_modify: 'style', 'italic'
       assign body_font_bold_italic = body_font_bold | font_modify: 'style', 'italic'

@@ -34,7 +34,8 @@
         role="list"
       >
         {% for recommendation in recommendations.products %}
-          <li class="grid__item">
+          {%- if recommendation.metafields.inventory.ShappifyHidden == 'true' -%}{%- continue -%}{%- endif -%}
+<li class="grid__item">
             {% render 'card-product',
               card_product: recommendation,
               media_aspect_ratio: section.settings.image_ratio,

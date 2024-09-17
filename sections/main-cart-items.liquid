@@ -79,7 +79,12 @@
 
               <tbody>
                 {%- for item in cart.items -%}
-                  <tr class="cart-item" id="CartItem-{{ item.index | plus: 1 }}">
+                  {%- comment -%}Bold:PO 2.0 - Hybrid Input{%- endcomment -%}
+  {%- if item.properties._boldBuilderId  and item.properties._boldVariantIds == null -%}
+      <input type="hidden" name="updates[]" id="updates_{{- item.key -}}" class="bold_hidden_input cart__product-qty" value="{{- item.quantity -}}" min="0" data-id="{{- item.key -}}">
+      {%- continue -%}
+  {%- endif -%}
+<tr class="cart-item" id="CartItem-{{ item.index | plus: 1 }}">
                     <td class="cart-item__media">
                       {% if item.image %}
                         {% comment %} Leave empty space due to a:empty CSS display: none rule {% endcomment %}
@@ -115,12 +120,12 @@
                           <span class="visually-hidden">
                             {{ 'products.product.price.sale_price' | t }}
                           </span>
-                          <strong class="cart-item__final-price product-option">
+                          <strong class="cart-item__final-price product-option"><span class="Bold-theme-hook-DO-NOT-DELETE bold_cart_item_price" data-item-key="{{item.key}}" style="display:none !important;"></span>
                             {{ item.final_price | money }}
                           </strong>
                         </div>
                       {%- else -%}
-                        <div class="product-option">
+                        <div class="product-option"><span class="Bold-theme-hook-DO-NOT-DELETE bold_cart_item_price" data-item-key="{{item.key}}" style="display:none !important;"></span>
                           {{ item.original_price | money }}
                         </div>
                       {%- endif -%}
@@ -138,6 +143,8 @@
                               </div>
                             {%- endfor -%}
                           {%- endif -%}
+{% comment %}
+ BOLD hidden properties
 
                           {%- for property in item.properties -%}
                             {%- assign property_first_char = property.first | slice: 0 -%}
@@ -156,7 +163,11 @@
                               </div>
                             {%- endif -%}
                           {%- endfor -%}
-                        </dl>
+                        
+{% endcomment %}
+</dl>
+<span class="bold_load_cart_item_properties"></span>
+<div class="bold_edit_in_cart"></div>
 
                         <p class="product-option">{{ item.selling_plan_allocation.selling_plan.name }}</p>
                       {%- endif -%}
@@ -180,19 +191,19 @@
                               {{ 'products.product.price.regular_price' | t }}
                             </dt>
                             <dd>
-                              <s class="cart-item__old-price price price--end">
+                              <s class="cart-item__old-price price price--end"><span class="Bold-theme-hook-DO-NOT-DELETE bold_cart_item_total" data-item-key="{{item.key}}" style="display:none !important;"></span>
                                 {{ item.original_line_price | money }}
                               </s>
                             </dd>
                             <dt class="visually-hidden">
                               {{ 'products.product.price.sale_price' | t }}
                             </dt>
-                            <dd class="price price--end">
+                            <dd class="price price--end"><span class="Bold-theme-hook-DO-NOT-DELETE bold_cart_item_total" data-item-key="{{item.key}}" style="display:none !important;"></span>
                               {{ item.final_line_price | money }}
                             </dd>
                           </dl>
                         {%- else -%}
-                          <span class="price price--end">
+                          <span class="price price--end"><span class="Bold-theme-hook-DO-NOT-DELETE bold_cart_item_total" data-item-key="{{item.key}}" style="display:none !important;"></span>
                             {{ item.original_line_price | money }}
                           </span>
                         {%- endif -%}
@@ -249,7 +260,7 @@
                               </button>
                               <input
                                 class="quantity__input"
-                                data-quantity-variant-id="{{ item.variant.id }}"
+                                data-id="{{ item.key }}" data-quantity-variant-id="{{ item.variant.id }}"
                                 type="number"
                                 name="updates[]"
                                 value="{{ item.quantity }}"
@@ -395,19 +406,19 @@
                               {{ 'products.product.price.regular_price' | t }}
                             </dt>
                             <dd>
-                              <s class="cart-item__old-price price price--end">
+                              <s class="cart-item__old-price price price--end"><span class="Bold-theme-hook-DO-NOT-DELETE bold_cart_item_total" data-item-key="{{item.key}}" style="display:none !important;"></span>
                                 {{ item.original_line_price | money }}
                               </s>
                             </dd>
                             <dt class="visually-hidden">
                               {{ 'products.product.price.sale_price' | t }}
                             </dt>
-                            <dd class="price price--end">
+                            <dd class="price price--end"><span class="Bold-theme-hook-DO-NOT-DELETE bold_cart_item_total" data-item-key="{{item.key}}" style="display:none !important;"></span>
                               {{ item.final_line_price | money }}
                             </dd>
                           </dl>
                         {%- else -%}
-                          <span class="price price--end">
+                          <span class="price price--end"><span class="Bold-theme-hook-DO-NOT-DELETE bold_cart_item_total" data-item-key="{{item.key}}" style="display:none !important;"></span>
                             {{ item.original_line_price | money }}
                           </span>
                         {%- endif -%}

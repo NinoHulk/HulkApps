@@ -143,7 +143,8 @@
               "
             >
               {%- for product in collection.products -%}
-                {% assign lazy_load = false %}
+                {%- if product.metafields.inventory.ShappifyHidden == 'true' -%}{%- continue -%}{%- endif -%}
+{% assign lazy_load = false %}
                 {%- if forloop.index > 2 -%}
                   {%- assign lazy_load = true -%}
                 {%- endif -%}

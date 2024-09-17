@@ -130,7 +130,8 @@
               aria-labelledby="predictive-search-products"
             >
               {%- for product in predictive_search.resources.products -%}
-                <li
+                {%- if product.metafields.inventory.ShappifyHidden == 'true' -%}{%- continue -%}{%- endif -%}
+<li
                   id="predictive-search-option-product-{{ forloop.index }}"
                   class="predictive-search__list-item"
                   role="option"

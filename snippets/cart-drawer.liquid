@@ -114,7 +114,12 @@
 
                   <tbody role="rowgroup">
                     {%- for item in cart.items -%}
-                      <tr id="CartDrawer-Item-{{ item.index | plus: 1 }}" class="cart-item" role="row">
+                      {%- comment -%}Bold:PO 2.0 - Hybrid Input{%- endcomment -%}
+  {%- if item.properties._boldBuilderId  and item.properties._boldVariantIds == null -%}
+      <input type="hidden" name="updates[]" id="updates_{{- item.key -}}" class="bold_hidden_input cart__product-qty" value="{{- item.quantity -}}" min="0" data-id="{{- item.key -}}">
+      {%- continue -%}
+  {%- endif -%}
+<tr id="CartDrawer-Item-{{ item.index | plus: 1 }}" class="cart-item" role="row">
                         <td class="cart-item__media" role="cell" headers="CartDrawer-ColumnProductImage">
                           {% if item.image %}
                             {% comment %} Leave empty space due to a:empty CSS display: none rule {% endcomment %}
@@ -150,12 +155,12 @@
                               <span class="visually-hidden">
                                 {{ 'products.product.price.sale_price' | t }}
                               </span>
-                              <strong class="cart-item__final-price product-option">
+                              <strong class="cart-item__final-price product-option"><span class="Bold-theme-hook-DO-NOT-DELETE bold_cart_item_price" data-item-key="{{item.key}}" style="display:none !important;"></span>
                                 {{ item.final_price | money }}
                               </strong>
                             </div>
                           {%- else -%}
-                            <div class="product-option">
+                            <div class="product-option"><span class="Bold-theme-hook-DO-NOT-DELETE bold_cart_item_price" data-item-key="{{item.key}}" style="display:none !important;"></span>
                               {{ item.original_price | money }}
                             </div>
                           {%- endif -%}
@@ -226,18 +231,18 @@
                                 <span class="visually-hidden">
                                   {{ 'products.product.price.regular_price' | t }}
                                 </span>
-                                <s class="cart-item__old-price price price--end">
+                                <s class="cart-item__old-price price price--end"><span class="Bold-theme-hook-DO-NOT-DELETE bold_cart_item_total" data-item-key="{{item.key}}" style="display:none !important;"></span>
                                   {{ item.original_line_price | money }}
                                 </s>
                                 <span class="visually-hidden">
                                   {{ 'products.product.price.sale_price' | t }}
                                 </span>
-                                <span class="price price--end">
+                                <span class="price price--end"><span class="Bold-theme-hook-DO-NOT-DELETE bold_cart_item_total" data-item-key="{{item.key}}" style="display:none !important;"></span>
                                   {{ item.final_line_price | money }}
                                 </span>
                               </div>
                             {%- else -%}
-                              <span class="price price--end">
+                              <span class="price price--end"><span class="Bold-theme-hook-DO-NOT-DELETE bold_cart_item_total" data-item-key="{{item.key}}" style="display:none !important;"></span>
                                 {{ item.original_line_price | money }}
                               </span>
                             {%- endif -%}
@@ -488,7 +493,7 @@
 
           <div class="totals" role="status">
             <h2 class="totals__total">{{ 'sections.cart.estimated_total' | t }}</h2>
-            <p class="totals__total-value">{{ cart.total_price | money_with_currency }}</p>
+            <p class="totals__total-value"><span class="Bold-theme-hook-DO-NOT-DELETE bold_cart_total" style="display:none !important;"></span>{{ cart.total_price | money_with_currency }}</p>
           </div>
 
           <small class="tax-note caption-large rte">

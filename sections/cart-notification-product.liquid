@@ -18,6 +18,8 @@
         {%- endif -%}
         <h3 class="cart-notification-product__name h4">{{ item.product.title | escape }}</h3>
         <dl>
+<span class="bold_load_cart_item_properties"></span>
+<div class="bold_edit_in_cart"></div>
           {%- unless item.product.has_only_default_variant -%}
             {%- for option in item.options_with_values -%}
               <div class="product-option">
@@ -26,6 +28,8 @@
               </div>
             {%- endfor -%}
           {%- endunless -%}
+{% comment %}
+ BOLD hidden properties
           {%- for property in item.properties -%}
             {%- assign property_first_char = property.first | slice: 0 -%}
             {%- if property.last != blank and property_first_char != '_' -%}
@@ -43,7 +47,9 @@
               </div>
             {%- endif -%}
           {%- endfor -%}
-        </dl>
+        
+{% endcomment %}
+</dl>
         {%- if item.selling_plan_allocation != null -%}
           <p class="product-option">{{ item.selling_plan_allocation.selling_plan.name }}</p>
         {%- endif -%}
