@@ -15,5 +15,5 @@
 }
 
 .bold_option_value:hover .bold_option_swatch_title, .bold_tooltip:hover > :first-child{
-  opacity: 1;
+  opacity: 1!important;
 }
