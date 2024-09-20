@@ -1,6 +1,7 @@
 /* Danko */
 
 .bold_option_value:has([aria-label=" color option: Men’s Black Velvet Milano Loafer   "]){
+  transition: 0.5s;
   &:hover{
     transform: scale(1.5);
     margin: 40px;
