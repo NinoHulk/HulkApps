@@ -1,0 +1,14 @@
+.bold-custom{
+  background-size: contain;
+  background-repeat: no-repeat;
+height: 180px!important;
+  width: 180px;
+}
+
+.bold_option_swatch_title{
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
