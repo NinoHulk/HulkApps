@@ -6,7 +6,8 @@
 }
 
 .bold_option_swatch_title{
-  width: 200px;
+  width: 200px!important;
+  opacity: 1!important;
   display: flex;
   flex-direction: column;
   align-items: center;
