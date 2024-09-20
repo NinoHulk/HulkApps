@@ -1,6 +1,6 @@
 /* Danko */
 
-.bold_option_value:has([aria-label="Men’s Textured Tan Suede Milano Loafer"]),.bold_option_value:has([aria-label="Men’s Olive and Textured Tan Milano Loafer"]){
+.bold_option_value:has([value="Men’s Textured Tan Suede Milano Loafer"]),.bold_option_value:has([value="Men’s Olive and Textured Tan Milano Loafer"]){
   transition: 0.5s;
   &:hover{
     transform: scale(1.5);
